@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pooja Setup Guide &middot; CAMBY Ai</title>
+<meta name="description" content="Pooja is a builder. Set her up on Hermes Agent, give every client a folder and a status file, turn on her file and terminal tools, and get a status roll-up every weekday morning.">
+<meta name="theme-color" content="#0B0D12">
+<link rel="canonical" href="https://pooja.mikecamby.com">
+<link rel="icon" href="camby-ai-logo-web.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CAMBY Ai">
+<meta property="og:title" content="Pooja Setup Guide">
+<meta property="og:description" content="Pooja is a builder. Set her up on Hermes Agent, give every client a folder and a status file, turn on her file and terminal tools, and get a status roll-up every weekday morning.">
+<meta property="og:url" content="https://pooja.mikecamby.com">
+<meta property="og:image" content="pooja-avatar.jpg">
+<meta property="og:image:alt" content="Pooja, the builder at CAMBY Ai">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1200">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pooja Setup Guide">
+<meta name="twitter:description" content="Pooja is a builder. Set her up on Hermes Agent, give every client a folder and a status file, turn on her file and terminal tools, and get a status roll-up every weekday morning.">
+<meta name="twitter:image" content="pooja-avatar.jpg">
+<meta name="twitter:image:alt" content="Pooja, the builder at CAMBY Ai">
+<style>
+  /* Layout: single column, left-aligned. Gold hairline rules separate numbered
+     sections, mirroring the CAMBY Ai site's "01 / SECTION" structure. */
+  :root {
+    --bg:        #0B0D12;
+    --panel:     #12161E;
+    --panel-2:   #171C26;
+    --line:      #2A2E3A;
+    --line-gold: #4A3B1E;
+    --gold:      #D8AA57;
+    --gold-dim:  #8A6E38;
+    --text:      #F7F3EB;
+    --muted:     #A49B89;
+    --ink:       #17191D;
+    --font-head: Georgia, "Times New Roman", serif;
+    --font-body: Arial, Helvetica, sans-serif;
+    --font-mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  h1, h2, h3, h4 { font-family: var(--font-head); font-weight: normal; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(38px, 7vw, 68px); line-height: 1.05; letter-spacing: -0.015em; }
+  h2 { font-size: clamp(27px, 4.4vw, 40px); line-height: 1.15; letter-spacing: -0.01em; }
+  h3 { font-size: clamp(19px, 2.4vw, 23px); line-height: 1.3; }
+  h1 em, h2 em { color: var(--gold); font-style: italic; }
+  p { margin: 0; }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 0.19em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0;
+  }
+  .eyebrow .sep { color: var(--gold-dim); }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    border-bottom: 1px solid var(--line);
+    background: var(--panel);
+  }
+  .masthead .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; padding-block: 18px;
+  }
+  .masthead img { width: 168px; height: auto; display: block; }
+  .masthead .tag {
+    font-size: 11px; letter-spacing: 0.19em; text-transform: uppercase;
+    color: var(--muted); border-left: 1px solid var(--line-gold); padding-left: 14px;
+  }
+
+  /* ---------- hero ---------- */
+  .hero .wrap { padding-block: clamp(40px, 7vw, 76px); }
+  .hero-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(28px, 5vw, 56px); align-items: center; }
+  .hero-copy { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+  .lede { font-size: clamp(16px, 1.9vw, 18.5px); color: var(--muted); max-width: 54ch; }
+  .lede strong { color: var(--text); font-weight: normal; }
+
+  .portrait { position: relative; min-width: 0; }
+  .portrait img { width: 100%; max-width: 100%; height: auto; display: block; border: 1px solid var(--line-gold); }
+  .portrait figcaption {
+    margin-top: 12px; font-size: 11px; letter-spacing: 0.17em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .portrait figcaption b { color: var(--gold); font-weight: normal; }
+
+  .facts { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .fact { flex: 1 1 150px; min-width: 0; padding: 16px 18px 16px 0; }
+  .fact + .fact { border-left: 1px solid var(--line); padding-left: 18px; }
+  .fact dt { font-size: 10.5px; letter-spacing: 0.17em; text-transform: uppercase; color: var(--muted); }
+  .fact dd { margin: 5px 0 0; font-family: var(--font-head); font-size: 21px; color: var(--gold); }
+
+  /* ---------- sections ---------- */
+  section { border-top: 1px solid var(--line); }
+  section .wrap { padding-block: clamp(36px, 5.5vw, 62px); }
+  .sec-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 26px; }
+  .sec-body { display: flex; flex-direction: column; gap: 20px; max-width: 68ch; }
+  .sec-body p { color: var(--muted); }
+  .sec-body p strong { color: var(--text); font-weight: bold; }
+
+  /* ---------- timeline table ---------- */
+  .scroll-x { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 440px; font-size: 15px; }
+  caption {
+    text-align: left; font-size: 11px; letter-spacing: 0.17em; text-transform: uppercase;
+    color: var(--muted); padding-bottom: 12px;
+  }
+  th, td { text-align: left; padding: 13px 16px 13px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-family: var(--font-body); font-size: 10.5px; letter-spacing: 0.17em; text-transform: uppercase; color: var(--gold); font-weight: normal; }
+  td.when { color: var(--gold); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  td.what { color: var(--text); }
+  td.note { color: var(--muted); font-size: 14px; }
+  tr.heavy td.when { color: var(--text); background: var(--panel-2); padding-left: 12px; }
+
+  /* ---------- steps ---------- */
+  .step { display: grid; grid-template-columns: 62px 1fr; gap: 0 22px; padding-block: 30px; border-top: 1px solid var(--line); }
+  .step:first-of-type { border-top: 0; }
+  .step-num { font-family: var(--font-head); font-size: 34px; color: var(--gold-dim); line-height: 1; padding-top: 4px; font-variant-numeric: tabular-nums; }
+  .step-body { min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  .step-body > p { color: var(--muted); max-width: 62ch; }
+  .step-body h3 em { color: var(--gold); font-style: italic; }
+
+  ul.ticks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+  ul.ticks li { position: relative; padding-left: 20px; color: var(--muted); max-width: 62ch; }
+  ul.ticks li::before { content: ""; position: absolute; left: 0; top: 10px; width: 8px; height: 1px; background: var(--gold); }
+  ul.ticks li b { color: var(--text); font-weight: bold; }
+
+  /* ---------- code ---------- */
+  .code { border: 1px solid var(--line); background: var(--panel); }
+  .code-top {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 9px 12px; border-bottom: 1px solid var(--line); background: var(--panel-2);
+  }
+  .code-top span { font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .copy {
+    font-family: var(--font-body); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    background: transparent; color: var(--gold); border: 1px solid var(--line-gold);
+    padding: 5px 11px; cursor: pointer;
+  }
+  .copy:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+  .copy:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  pre { margin: 0; padding: 14px; overflow-x: auto; font-family: var(--font-mono); font-size: 13.5px; line-height: 1.75; color: var(--text); }
+  pre .c { color: var(--gold-dim); }
+  code { font-family: var(--font-mono); font-size: 0.92em; color: var(--gold); }
+
+  /* ---------- callout ---------- */
+  .callout { border-left: 2px solid var(--gold); background: var(--panel); padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
+  .callout .k { font-size: 10.5px; letter-spacing: 0.17em; text-transform: uppercase; color: var(--gold); }
+  .callout p { color: var(--muted); max-width: 62ch; }
+
+  /* ---------- guardrails ---------- */
+  .rails { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .rail { background: var(--bg); padding: 20px; display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+  .rail dt { font-family: var(--font-head); font-size: 18px; color: var(--text); }
+  .rail dd { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .rail .val { color: var(--gold); font-family: var(--font-mono); font-size: 13px; }
+
+  /* ---------- cta ---------- */
+  .cta { background: var(--panel); border-top: 1px solid var(--line-gold); }
+  .cta .wrap { padding-block: clamp(40px, 6vw, 68px); display: flex; flex-direction: column; gap: 24px; }
+  .cta-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(24px, 4vw, 48px); align-items: start; }
+  .contact { border: 1px solid var(--line-gold); padding: 22px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  .contact .row { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+  .contact .row dt { font-size: 10.5px; letter-spacing: 0.17em; text-transform: uppercase; color: var(--muted); }
+  .contact .row dd { margin: 0; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; min-width: 0; }
+  .contact .v { font-family: var(--font-mono); font-size: 14.5px; color: var(--gold); word-break: break-all; }
+  a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--line-gold); }
+  a:hover { border-bottom-color: var(--gold); }
+  a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* ---------- footer ---------- */
+  footer { border-top: 1px solid var(--line); }
+  footer .wrap { padding-block: 34px; display: flex; flex-direction: column; gap: 18px; }
+  footer img.sig { width: 150px; height: auto; opacity: 0.85; }
+  footer p { font-size: 13.5px; color: var(--muted); max-width: 70ch; }
+  .fine { font-size: 12px; color: var(--gold-dim); }
+
+  @media (max-width: 760px) {
+    .hero-grid, .cta-grid { grid-template-columns: 1fr; }
+    .portrait { max-width: 340px; }
+    .step { grid-template-columns: 1fr; gap: 12px; }
+    .step-num { font-size: 26px; padding-top: 0; }
+    .fact + .fact { border-left: 0; padding-left: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <img src="camby-ai-logo-web.png" alt="CAMBY Ai">
+    <div class="tag">Pooja &middot; Setup Guide</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">00 <span class="sep">/</span> Builds</p>
+        <h1>The software is free.<br><em>The scope is the work.</em></h1>
+<p class="lede">Pooja is a builder. Most small teams lose a week between "the client said yes" and "it is live", because the person who sold the work is also the person who has to build it, usually late at night. Pooja takes the build: every client gets their own folder and a status file that is always current, she builds the automation, tests it before anyone sees it, and hands over a go live checklist when it is ready. If a build depends on signed terms or a change of scope, she stops and says so first. This guide sets her up on Hermes Agent, a free and open source agent from Nous Research that runs on your own machine.</p>
+<p class="lede">The software is free. The model behind it is not always free, and the real work is writing down what "done" means for each client before she starts.</p>
+<p class="fine"><strong>Checked on 2026-11-21.</strong> Commands and limits change. Sources are at the bottom.</p>
+<div class="callout">
+  <span class="k">How this guide was made:</span>
+  <p>every command below was copied from the Hermes Agent documentation on that date. We have not test-run them on a fresh machine. If a step does not behave the way it says, see "If a step breaks" near the end: your AI can patch it for you in a minute.</p>
+</div>
+      </div>
+      <figure class="portrait">
+        <img src="pooja-avatar.jpg" alt="Pooja, the builder at CAMBY Ai" style="aspect-ratio:502 / 900; object-fit:cover; object-position:48% center;">
+        <figcaption><b>Pooja</b> &middot; Let's ship</figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">01 <span class="sep">/</span> Before you start</p>
+      <h2>The honest timeline.<br><em>The slow part is the scope.</em></h2>
+    </div>
+    <div class="sec-body">
+      <h3>What Pooja does</h3>
+<ul class="ticks">
+  <li>Gives every client their own build folder, so nothing from one client leaks into another.</li>
+  <li>Keeps a status file in each folder that is always current: what is built, what is tested, what is blocked.</li>
+  <li>Builds the automation from a short scope you write, and nothing outside it.</li>
+  <li>Tests before anyone sees it, and writes down what she tested and what she could not.</li>
+  <li>Writes a go live checklist when a build is ready, for whoever takes it live.</li>
+  <li>Stops and tells you first when a build depends on signed terms or a change of scope.</li>
+  <li>Writes one short status roll-up each weekday morning across every client.</li>
+  <li>Does not go live, touch a client's real accounts, or send anything to a client. You do.</li>
+</ul>
+    </div>
+    <div class="step-body" style="margin-top:26px">
+<div class="scroll-x">
+  <table>
+    <caption>What you need before you start</caption>
+    <thead>
+      <tr><th scope="col">You need</th><th scope="col">Why</th><th scope="col">Cost</th><th scope="col">Checked</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="what">A computer that stays on: macOS, Linux, Windows or WSL2</td>
+        <td class="note">The morning roll-up only runs while Hermes' gateway is running</td>
+        <td class="note">Yours already</td>
+        <td class="when">2026-11-21</td>
+      </tr>
+      <tr>
+        <td class="what">Git and curl</td>
+        <td class="note">The installer uses them</td>
+        <td class="note">Free</td>
+        <td class="when">2026-11-21</td>
+      </tr>
+      <tr>
+        <td class="what">Hermes Agent</td>
+        <td class="note">Runs Pooja</td>
+        <td class="note">Free, MIT licence</td>
+        <td class="when">2026-11-21</td>
+      </tr>
+      <tr>
+        <td class="what">A model with at least 64,000 tokens of context</td>
+        <td class="note">Hermes rejects smaller models at startup</td>
+        <td class="note">Depends on the provider you pick. Not measured here</td>
+        <td class="when">2026-11-21</td>
+      </tr>
+      <tr>
+        <td class="what">A written scope for one client</td>
+        <td class="note">She builds what is written, so it has to be written</td>
+        <td class="note">Yours already</td>
+        <td class="when">2026-11-21</td>
+      </tr>
+      <tr>
+        <td class="what">Test accounts, not live ones</td>
+        <td class="note">So a test never touches a real customer</td>
+        <td class="note">Depends on the tools you build on</td>
+        <td class="when">2026-11-21</td>
+      </tr>
+      <tr>
+        <td class="what">Telegram (optional)</td>
+        <td class="note">To get the status roll-up on your phone</td>
+        <td class="note">Free</td>
+        <td class="when">2026-11-21</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>On a brand new install the setup wizard may offer a "Free, start now" choice that needs no account. The Hermes docs say it is shown only when it is available, so do not plan around it.</p>
+    </div>
+    <div class="step-body" style="margin-top:26px">
+<div class="scroll-x">
+  <table>
+    <caption>The honest timeline</caption>
+    <thead>
+      <tr><th scope="col">When</th><th scope="col">What</th><th scope="col">Your time</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="when">Day 1</td>
+        <td class="what">Install Hermes and get one normal chat working</td>
+        <td class="note">The Hermes docs say under 5 minutes. Allow 30</td>
+      </tr>
+      <tr>
+        <td class="when">Day 1</td>
+        <td class="what">Create Pooja and give her a builds folder</td>
+        <td class="note">20 minutes</td>
+      </tr>
+      <tr>
+        <td class="when">Day 1</td>
+        <td class="what">Write the scope and the first status file for one client</td>
+        <td class="note">30 to 60 minutes. This is the part that decides everything</td>
+      </tr>
+      <tr>
+        <td class="when">Day 1 to 2</td>
+        <td class="what">Turn on her file and terminal tools and run one build by hand</td>
+        <td class="note">1 to 2 hours</td>
+      </tr>
+      <tr>
+        <td class="when">Day 2</td>
+        <td class="what">Turn on the morning status roll-up</td>
+        <td class="note">20 minutes</td>
+      </tr>
+      <tr>
+        <td class="when">Week 1</td>
+        <td class="what">Read the roll-up, check her tests, take builds live yourself</td>
+        <td class="note">15 minutes a day</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p>The slow part is not the install. It is the scope. A builder with a vague brief builds the wrong thing quickly. Pooja is only as good as the page that says what the client is getting and how you will know it works.</p>
+<div class="callout">
+  <span class="k">Three limits to know before you start:</span>
+  <p>She runs commands on your computer. Hermes asks you before a dangerous command, and that check is your safety net, so read what it shows you before you approve.</p>
+  <p>Keys and passwords stay out of her folders. Give her test accounts. Live keys go in at go live, by you.</p>
+  <p>In our own team she builds in Claude Code. This guide has her build with Hermes' own file and terminal tools, which do the same job for a small automation.</p>
+</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">02 <span class="sep">/</span> The build</p>
+      <h2>Seven steps.<br><em>In this order.</em></h2>
+    </div>
+
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <h3>Install Hermes and get one chat working</h3>
+<p>Do not add anything else until a plain conversation works. The Hermes quickstart is blunt about this, and it is right.</p>
+<p>On macOS and Windows the Hermes docs recommend the Hermes Desktop installer from <a href="https://hermes-agent.nousresearch.com/">https:/<wbr>/<wbr>hermes-agent.nousresearch.com/<wbr></a>. For a command line only install on macOS, Linux or WSL2:</p>
+<div class="code">
+  <div class="code-top"><span>Terminal</span><button class="copy" type="button" data-copy="curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash">Copy</button></div>
+<pre>curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash</pre>
+</div>
+<p>Reload your shell, pick a model, and start a chat:</p>
+<div class="code">
+  <div class="code-top"><span>Terminal</span><button class="copy" type="button" data-copy="source ~/.zshrc&#10;hermes setup&#10;hermes">Copy</button></div>
+<pre>source ~/.zshrc
+hermes setup
+hermes</pre>
+</div>
+<div class="callout">
+  <span class="k">You should see:</span>
+  <p>a welcome banner naming your model, and a reply to a simple question. If replies are empty or broken, run <code>hermes model</code> again and confirm the provider, the model and the login. If anything else looks off, run <code>hermes doctor</code>.</p>
+</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <h3>Create Pooja</h3>
+<p>Every agent in Hermes gets its own profile: its own settings, memory and identity. Never point two agents at the same profile.</p>
+<div class="code">
+  <div class="code-top"><span>Terminal</span><button class="copy" type="button" data-copy="hermes profile create pooja --description &quot;Builder. One folder and one status file per client. Builds client automations from a written scope, tests before anyone sees them, writes a go live checklist, and stops when a build depends on signed terms or a scope change. Never goes live. The owner does.&quot;">Copy</button></div>
+<pre>hermes profile create pooja --description "Builder. One folder and one status file per client. Builds client automations from a written scope, tests before anyone sees them, writes a go live checklist, and stops when a build depends on signed terms or a scope change. Never goes live. The owner does."</pre>
+</div>
+<p>Creating the profile also creates a <code>pooja</code> command. Check it:</p>
+<div class="code">
+  <div class="code-top"><span>Terminal</span><button class="copy" type="button" data-copy="pooja chat">Copy</button></div>
+<pre>pooja chat</pre>
+</div>
+<div class="callout">
+  <span class="k">You should see:</span>
+  <p>the same kind of chat as step 1, now running as the <code>pooja</code> profile.</p>
+</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <h3>Give Pooja her identity</h3>
+<p>In Hermes, who an agent is lives in a file called <code>SOUL.md</code> inside that agent's home. For a profile named <code>pooja</code> that is:</p>
+<div class="code">
+  <div class="code-top"><span>~/.hermes/profiles/pooja/SOUL.md</span><button class="copy" type="button" data-copy="~/.hermes/profiles/pooja/SOUL.md">Copy</button></div>
+<pre>~/.hermes/profiles/pooja/SOUL.md</pre>
+</div>
+<p>Hermes creates a starter file there. Replace its contents with the text in "Pooja's instructions" below. Keep it about who she is and how she talks. Your rules and your clients go in different files, in the next step.</p>
+<div class="callout">
+  <span class="k">You should see:</span>
+  <p>after starting a new <code>pooja chat</code>, she introduces herself as your builder when asked who she is.</p>
+</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <h3>Build her desk: the rules, the status file, the checklist</h3>
+<p>This is the step everybody rushes, and it is the one that makes Pooja useful.</p>
+<p>Make a folder for her to work from, with one folder inside it for a template client:</p>
+<div class="code">
+  <div class="code-top"><span>Terminal</span><button class="copy" type="button" data-copy="mkdir -p ~/pooja-builds/clients/_template/build ~/pooja-builds/clients/_template/tests">Copy</button></div>
+<pre>mkdir -p ~/pooja-builds/clients/_template/build ~/pooja-builds/clients/_template/tests</pre>
+</div>
+<p>Put three files in it. Hermes loads <code>AGENTS.md</code> from the folder you start a chat in, and Pooja copies the other two for every new client.</p>
+<p><code>~/pooja-builds/AGENTS.md</code>, the rules:</p>
+<div class="code">
+  <div class="code-top"><span>~/pooja-builds/AGENTS.md</span><button class="copy" type="button" data-copy="# How Pooja works these builds&#10;&#10;- clients/ holds one folder per client. To start a client, copy clients/_template and rename it. Never put two clients in one folder.&#10;- Each client folder has SCOPE.md (what they are getting, written by me), STATUS.md (kept current by you), build/ and tests/.&#10;- Build only what SCOPE.md says. If something is not in it, stop and ask me. Do not guess what the client meant.&#10;- Update STATUS.md every time you finish a piece of work, before you tell me about it.&#10;- Test every build before you call it ready. Write what you tested, what passed, and what you could not test, in STATUS.md.&#10;- Use test accounts and made-up data only. Never use a client&#x27;s live account, live customers or real money in a test.&#10;- If a build depends on signed terms, a price, or a change to the scope, stop. Write &quot;Blocked&quot; and the reason in STATUS.md and tell me first.&#10;- When a build is ready, copy GO_LIVE.md into the client folder and fill it in for whoever takes it live.&#10;- Never go live, never send anything to a client, and never store a password, key or token in these folders.">Copy</button></div>
+<pre># How Pooja works these builds
+
+- clients/ holds one folder per client. To start a client, copy clients/_template and rename it. Never put two clients in one folder.
+- Each client folder has SCOPE.md (what they are getting, written by me), STATUS.md (kept current by you), build/ and tests/.
+- Build only what SCOPE.md says. If something is not in it, stop and ask me. Do not guess what the client meant.
+- Update STATUS.md every time you finish a piece of work, before you tell me about it.
+- Test every build before you call it ready. Write what you tested, what passed, and what you could not test, in STATUS.md.
+- Use test accounts and made-up data only. Never use a client's live account, live customers or real money in a test.
+- If a build depends on signed terms, a price, or a change to the scope, stop. Write "Blocked" and the reason in STATUS.md and tell me first.
+- When a build is ready, copy GO_LIVE.md into the client folder and fill it in for whoever takes it live.
+- Never go live, never send anything to a client, and never store a password, key or token in these folders.</pre>
+</div>
+<p><code>~/pooja-builds/clients/_template/STATUS.md</code>, the status file:</p>
+<div class="code">
+  <div class="code-top"><span>clients/_template/STATUS.md</span><button class="copy" type="button" data-copy="# STATUS: {client name}&#10;&#10;- Stage: {scoping, building, testing, ready, blocked, live}&#10;- Last updated: {date and time}&#10;- Built so far: {what exists in build/}&#10;- Tested: {what you ran, and the result}&#10;- Not tested yet: {what and why}&#10;- Blocked on: {signed terms, scope change, an account, or &quot;nothing&quot;}&#10;- Next step: {the one next thing, and who does it}">Copy</button></div>
+<pre># STATUS: {client name}
+
+- Stage: {scoping, building, testing, ready, blocked, live}
+- Last updated: {date and time}
+- Built so far: {what exists in build/}
+- Tested: {what you ran, and the result}
+- Not tested yet: {what and why}
+- Blocked on: {signed terms, scope change, an account, or "nothing"}
+- Next step: {the one next thing, and who does it}</pre>
+</div>
+<p><code>~/pooja-builds/clients/_template/GO_LIVE.md</code>, the go live checklist:</p>
+<div class="code">
+  <div class="code-top"><span>clients/_template/GO_LIVE.md</span><button class="copy" type="button" data-copy="# Go live checklist: {client name}&#10;&#10;- [ ] Terms are signed and the scope matches what was built&#10;- [ ] Every test in STATUS.md passes&#10;- [ ] Test accounts and made-up data are swapped for the client&#x27;s live accounts, by a person&#10;- [ ] The client knows the go live day and who to call&#10;- [ ] Someone watches the first real run&#10;- [ ] How to switch it off is written here: {steps}&#10;- [ ] STATUS.md says &quot;live&quot;, with the date">Copy</button></div>
+<pre># Go live checklist: {client name}
+
+- [ ] Terms are signed and the scope matches what was built
+- [ ] Every test in STATUS.md passes
+- [ ] Test accounts and made-up data are swapped for the client's live accounts, by a person
+- [ ] The client knows the go live day and who to call
+- [ ] Someone watches the first real run
+- [ ] How to switch it off is written here: {steps}
+- [ ] STATUS.md says "live", with the date</pre>
+</div>
+<div class="callout">
+  <span class="k">You should see:</span>
+  <p>when you run <code>pooja chat</code> from inside <code>~/pooja-builds</code> and ask how she starts a new client, she answers from <code>AGENTS.md</code> and names the three files.</p>
+</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <h3>Turn on her file and terminal tools</h3>
+<p>Pooja builds by writing files and running commands. Open the tools menu for her profile and confirm the file and terminal toolsets are on:</p>
+<div class="code">
+  <div class="code-top"><span>Terminal</span><button class="copy" type="button" data-copy="hermes -p pooja tools">Copy</button></div>
+<pre>hermes -p pooja tools</pre>
+</div>
+<p>Start a new <code>pooja chat</code> after changing her tools. An old conversation keeps its old permissions.</p>
+<p>Hermes checks every command against a list of dangerous patterns and asks you before it runs one. Leave that on. It is the difference between a builder and an accident.</p>
+<div class="callout">
+  <span class="k">You should see:</span>
+  <p>in a new chat from inside <code>~/pooja-builds</code>, she can create a file in a client folder and read it back to you.</p>
+</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">06</div>
+      <div class="step-body">
+        <h3>Schedule the morning status roll-up</h3>
+<p>Hermes has a built-in scheduler. Give the job Pooja's folder so she reads every client's status when she runs. The folder must be written as a full path.</p>
+<div class="code">
+  <div class="code-top"><span>Terminal</span><button class="copy" type="button" data-copy="hermes -p pooja cron create &quot;weekdays at 7am&quot; \&#10;  &quot;Status roll-up. Read STATUS.md in every folder under clients/ except _template. For each client give one line: stage, what changed since yesterday, and what is blocked. Put anything blocked at the top with the reason. Build nothing and change nothing. Keep it under 150 words.&quot; \&#10;  --workdir /Users/you/pooja-builds \&#10;  --name &quot;Build status&quot;">Copy</button></div>
+<pre>hermes -p pooja cron create "weekdays at 7am" \
+  "Status roll-up. Read STATUS.md in every folder under clients/ except _template. For each client give one line: stage, what changed since yesterday, and what is blocked. Put anything blocked at the top with the reason. Build nothing and change nothing. Keep it under 150 words." \
+  --workdir /Users/you/pooja-builds \
+  --name "Build status"</pre>
+</div>
+<p>Schedules run from a gateway, and each profile has its own. Start Pooja's, and check that her scheduler is alive:</p>
+<div class="code">
+  <div class="code-top"><span>Terminal</span><button class="copy" type="button" data-copy="pooja gateway start&#10;hermes -p pooja cron status">Copy</button></div>
+<pre>pooja gateway start
+hermes -p pooja cron status</pre>
+</div>
+<p><code>pooja gateway install</code> keeps it running after a restart.</p>
+<p>By default the roll-up is saved on your machine. To get it on your phone, connect Telegram first with <code>hermes gateway setup</code>, then create the job with <code>--deliver telegram</code> added.</p>
+<p>One thing to check on your machine: whether your times come out in your own timezone. Hermes reads the schedule in the profile's <code>timezone:</code> setting. Add <code>--timezone America/Los_Angeles</code> (or your zone) to pin it.</p>
+<div class="callout">
+  <span class="k">You should see:</span>
+  <p>a status roll-up waiting for you the next weekday morning.</p>
+</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">07</div>
+      <div class="step-body">
+        <h3>Run your first build, by hand</h3>
+<p>Copy <code>clients/_template</code> to a new folder for one real client and write <code>SCOPE.md</code> in it yourself: what they are getting, in plain words, and how you will know it works. Then from inside <code>~/pooja-builds</code> run <code>pooja chat</code> and send her this:</p>
+<div class="code">
+  <div class="code-top"><span>Send to Pooja</span><button class="copy" type="button" data-copy="Read clients/{client folder}/SCOPE.md. Tell me in five lines what you are going to build and how you will test it, and list anything in the scope that is unclear. Wait for my OK. Then build it in build/, write the tests in tests/, run them with made-up data only, and update STATUS.md. If anything depends on signed terms or a change of scope, stop and tell me first. Do not go live.">Copy</button></div>
+<pre>Read clients/{client folder}/SCOPE.md. Tell me in five lines what you are going to build and how you will test it, and list anything in the scope that is unclear. Wait for my OK. Then build it in build/, write the tests in tests/, run them with made-up data only, and update STATUS.md. If anything depends on signed terms or a change of scope, stop and tell me first. Do not go live.</pre>
+</div>
+<div class="callout">
+  <span class="k">You should see:</span>
+  <p>a short plan and her questions first. After your OK, files in <code>build/</code> and <code>tests/</code>, a <code>STATUS.md</code> that says what passed and what was not tested, and nothing live.</p>
+</div>
+      </div>
+    </div>
+
+    <div class="step-body" style="margin-top:26px">
+      <h3>Pooja's instructions</h3>
+<p>Paste this into <code>~/.hermes/profiles/pooja/SOUL.md</code>. Change the parts in braces.</p>
+<div class="code">
+  <div class="code-top"><span>~/.hermes/profiles/pooja/SOUL.md</span><button class="copy" type="button" data-copy="# Who you are&#10;&#10;You are Pooja. You are the builder for {your business}.&#10;&#10;Your job is to turn a signed scope into a working automation that is ready to go live: every client has their own folder, every folder has a status file that is always current, every build is tested before anyone sees it, and nothing ships that was not in the scope.&#10;&#10;# How you work&#10;&#10;- One client, one folder. Nothing from one client is ever copied into another.&#10;- You build what the scope says. When it is unclear, you ask before you build.&#10;- You keep the status file current. If it is not in STATUS.md, it did not happen.&#10;- You test before you say ready. You say what you tested, what passed, and what you could not test.&#10;- You test with made-up data and test accounts only.&#10;- You stop when a build depends on signed terms, a price, or a change of scope, and you say so first.&#10;- You hand over with a go live checklist. You never go live yourself.&#10;- You never store a password, key or token in a build folder.&#10;&#10;# How you talk&#10;&#10;- Calm, precise and warm. A steady engineer, never rushed.&#10;- Lead with the status: ready, building, testing or blocked.&#10;- One line per client: stage, what changed, what is next.&#10;- When you ask a question, ask exactly one.">Copy</button></div>
+<pre># Who you are
+
+You are Pooja. You are the builder for {your business}.
+
+Your job is to turn a signed scope into a working automation that is ready to go live: every client has their own folder, every folder has a status file that is always current, every build is tested before anyone sees it, and nothing ships that was not in the scope.
+
+# How you work
+
+- One client, one folder. Nothing from one client is ever copied into another.
+- You build what the scope says. When it is unclear, you ask before you build.
+- You keep the status file current. If it is not in STATUS.md, it did not happen.
+- You test before you say ready. You say what you tested, what passed, and what you could not test.
+- You test with made-up data and test accounts only.
+- You stop when a build depends on signed terms, a price, or a change of scope, and you say so first.
+- You hand over with a go live checklist. You never go live yourself.
+- You never store a password, key or token in a build folder.
+
+# How you talk
+
+- Calm, precise and warm. A steady engineer, never rushed.
+- Lead with the status: ready, building, testing or blocked.
+- One line per client: stage, what changed, what is next.
+- When you ask a question, ask exactly one.</pre>
+</div>
+<p>This persona was written from Pooja's job description for this guide. It is not a copy of the instructions she runs on in our own team.</p>
+    </div>
+
+    <div class="step-body" style="margin-top:26px">
+      <h3>First test</h3>
+<p>Run <code>pooja chat</code> from inside <code>~/pooja-builds</code> and send her this:</p>
+<div class="code">
+  <div class="code-top"><span>First test</span><button class="copy" type="button" data-copy="Give me the status of every client under clients/, one line each, from their STATUS.md files only. Then tell me which builds are blocked and on what, and which ones have something not tested yet. If a folder has no STATUS.md, say so. Build nothing.">Copy</button></div>
+<pre>Give me the status of every client under clients/, one line each, from their STATUS.md files only. Then tell me which builds are blocked and on what, and which ones have something not tested yet. If a folder has no STATUS.md, say so. Build nothing.</pre>
+</div>
+<p>A good answer lists only client folders that exist, takes every word from each <code>STATUS.md</code>, names what is blocked and what is untested, and tells you plainly when a file is missing instead of filling it in.</p>
+<p>If she says a build is tested when <code>STATUS.md</code> does not say so, tighten the testing line in <code>AGENTS.md</code> and ask her to run the tests again.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">03 <span class="sep">/</span> When it goes wrong</p>
+      <h2>If a step breaks.<br><em>You do not need us to fix it.</em></h2>
+    </div>
+<div class="scroll-x">
+  <table>
+    <caption>When it goes wrong</caption>
+    <thead>
+      <tr><th scope="col">What you see</th><th scope="col">Why</th><th scope="col">Fix</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="what">Empty or broken replies</td>
+        <td class="note">Model or login is wrong</td>
+        <td class="note"><code>hermes model</code>, then a plain chat before anything else</td>
+      </tr>
+      <tr>
+        <td class="what">She does not know your clients</td>
+        <td class="note">The chat was not started in <code>~/pooja-builds</code></td>
+        <td class="note">Start <code>pooja chat</code> from that folder</td>
+      </tr>
+      <tr>
+        <td class="what">She cannot create or run anything</td>
+        <td class="note">The file or terminal toolset is off, or the chat is older than the change</td>
+        <td class="note"><code>hermes -p pooja tools</code>, then a new chat</td>
+      </tr>
+      <tr>
+        <td class="what">She built something that was not asked for</td>
+        <td class="note"><code>SCOPE.md</code> is vague</td>
+        <td class="note">Rewrite the scope, and keep the "ask before you build" rule in <code>AGENTS.md</code></td>
+      </tr>
+      <tr>
+        <td class="what">"Ready" but it does not work</td>
+        <td class="note">The tests did not cover the real path</td>
+        <td class="note">Add the missing case to <code>tests/</code>, and make her list what is not tested</td>
+      </tr>
+      <tr>
+        <td class="what">Hermes keeps asking before commands</td>
+        <td class="note">That is the dangerous command check doing its job</td>
+        <td class="note">Read the command, then approve it or say no</td>
+      </tr>
+      <tr>
+        <td class="what">No morning roll-up</td>
+        <td class="note">Pooja's gateway is not running, or the job is missing its folder</td>
+        <td class="note"><code>hermes -p pooja cron status</code>, <code>pooja gateway start</code>, and recreate the job with <code>--workdir</code></td>
+      </tr>
+      <tr>
+        <td class="what">The roll-up arrives at the wrong hour</td>
+        <td class="note">The schedule is running in another timezone</td>
+        <td class="note">Recreate the job with <code>--timezone</code> set to your zone</td>
+      </tr>
+      <tr>
+        <td class="what">Anything else</td>
+        <td class="note"></td>
+        <td class="note"><code>hermes doctor</code></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+    <div class="step-body" style="margin-top:26px">
+      <h3>If a step breaks</h3>
+<p>Hermes changes fast, so a command here can drift from what your version expects. You do not need us to fix it. Paste this into Hermes itself, or into Claude or ChatGPT, with the error underneath:</p>
+<div class="code">
+  <div class="code-top"><span>Prompt</span><button class="copy" type="button" data-copy="I am following a setup guide for a builder agent on Hermes Agent. This step failed. Here is the step, the exact command I ran, and the full error. Check the current Hermes Agent docs at https://hermes-agent.nousresearch.com/docs, tell me what changed, and give me the corrected command.">Copy</button></div>
+<pre>I am following a setup guide for a builder agent on Hermes Agent. This step failed. Here is the step, the exact command I ran, and the full error. Check the current Hermes Agent docs at https://hermes-agent.nousresearch.com/docs, tell me what changed, and give me the corrected command.</pre>
+</div>
+<p><code>hermes doctor</code> is worth running first. It catches most setup problems on its own.</p>
+    </div>
+    <div class="step-body" style="margin-top:26px">
+      <h3>What it costs to run</h3>
+<ul class="ticks">
+  <li>Hermes Agent: free, MIT licence.</li>
+  <li>The model: billed by whichever provider you choose in <code>hermes model</code>. Building and testing use far more of the model than a morning roll-up does. Not measured here, so no number is given.</li>
+  <li>The tools you build on (a CRM, a texting service, a calendar) bill separately. Check each one's current price before you promise a client anything.</li>
+</ul>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">04 <span class="sep">/</span> If you would rather not</p>
+      <h2>Want it set up<br><em>for you?</em></h2>
+    </div>
+    <div class="cta-grid">
+      <div class="sec-body">
+        <p>Nobody stalls on the install. They stall on writing the scope and on trusting the first build.</p>
+<p>CAMBY Ai sets Pooja up and runs her for you: <a href="https://mikecamby.com">https:/<wbr>/<wbr>mikecamby.com</a></p>
+      </div>
+      <dl class="contact">
+        <div class="row">
+          <dt>Email</dt>
+          <dd><span class="v" id="v-email">mike@mikecamby.com</span>
+            <button class="copy" type="button" data-copy="mike@mikecamby.com">Copy</button></dd>
+        </div>
+        <div class="row">
+          <dt>Text</dt>
+          <dd><span class="v" id="v-phone">747.441.6578</span>
+            <button class="copy" type="button" data-copy="747.441.6578">Copy</button></dd>
+        </div>
+        <div class="row">
+          <dt>Book a time</dt>
+          <dd><a href="https://cal.com/mikecamby">cal.com/mikecamby</a></dd>
+        </div>
+        <div class="row">
+          <dt>The code</dt>
+          <dd><a href="https://github.com/NousResearch/hermes-agent">github.com/NousResearch/hermes-agent</a></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <img class="sig" src="camby-signature-web.png" alt="Camby">
+    <h3>Credit</h3>
+<p>Pooja runs on <a href="https://github.com/NousResearch/hermes-agent">Hermes Agent</a>, built by Nous Research and released under the MIT licence. Hermes is not ours. This guide is a walkthrough for using it to build and test client automations. Not affiliated with or endorsed by Nous Research, Anthropic or Telegram.</p>
+    <h3>Sources</h3>
+<p>All read on 2026-11-21 from the Hermes Agent repository and its documentation.</p>
+<ul class="ticks">
+  <li><a href="https://github.com/NousResearch/hermes-agent">https:/<wbr>/<wbr>github.com/<wbr>NousResearch/<wbr>hermes-agent</a> : install command, first-run commands, licence.</li>
+  <li><a href="https://hermes-agent.nousresearch.com/docs/getting-started/quickstart">https:/<wbr>/<wbr>hermes-agent.nousresearch.com/<wbr>docs/<wbr>getting-started/<wbr>quickstart</a> : install paths, <code>hermes setup</code>, the 64,000 token minimum, the "Free, start now" option, <code>hermes doctor</code>.</li>
+  <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/profiles">https:/<wbr>/<wbr>hermes-agent.nousresearch.com/<wbr>docs/<wbr>user-guide/<wbr>profiles</a> : <code>hermes profile create</code>, <code>--description</code>, one profile per agent, the per-profile command.</li>
+  <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/personality">https:/<wbr>/<wbr>hermes-agent.nousresearch.com/<wbr>docs/<wbr>user-guide/<wbr>features/<wbr>personality</a> : <code>SOUL.md</code>, where it lives and what belongs in it.</li>
+  <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/which-file-does-what">https:/<wbr>/<wbr>hermes-agent.nousresearch.com/<wbr>docs/<wbr>user-guide/<wbr>which-file-does-what</a> : <code>SOUL.md</code> versus <code>AGENTS.md</code>.</li>
+  <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/tools">https:/<wbr>/<wbr>hermes-agent.nousresearch.com/<wbr>docs/<wbr>user-guide/<wbr>features/<wbr>tools</a> : the file and terminal toolsets, turning toolsets on and off.</li>
+  <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/security">https:/<wbr>/<wbr>hermes-agent.nousresearch.com/<wbr>docs/<wbr>user-guide/<wbr>security</a> : the dangerous command check and how approvals work.</li>
+  <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/cron">https:/<wbr>/<wbr>hermes-agent.nousresearch.com/<wbr>docs/<wbr>user-guide/<wbr>features/<wbr>cron</a> : <code>cron create</code>, "weekdays at", <code>--workdir</code>, <code>--deliver</code>, <code>--name</code>, <code>--timezone</code>.</li>
+  <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/messaging">https:/<wbr>/<wbr>hermes-agent.nousresearch.com/<wbr>docs/<wbr>user-guide/<wbr>messaging</a> : <code>hermes gateway setup</code>, <code>start</code>, <code>install</code>, <code>status</code>.</li>
+  <li><a href="https://hermes-agent.nousresearch.com/docs/user-guide/multi-profile-gateways">https:/<wbr>/<wbr>hermes-agent.nousresearch.com/<wbr>docs/<wbr>user-guide/<wbr>multi-profile-gateways</a> : one gateway per profile, <code>&lt;profile&gt; gateway start</code>, <code>hermes -p &lt;profile&gt; cron status</code>.</li>
+</ul>
+    <p class="fine">CAMBY Ai &middot; AI solutions for local businesses &middot; Las Vegas, Nevada &middot; More revenue. Less costs.</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var text = btn.dataset.copy;
+      if (!text) {
+        var block = btn.closest(".code");
+        var pre = block && block.querySelector("pre");
+        if (!pre) return;
+        text = pre.innerText.replace(/[ \t]*#.*$/gm, "").trim();
+      }
+      var done = function () {
+        var prev = btn.textContent;
+        btn.textContent = "Copied";
+        setTimeout(function () { btn.textContent = prev; }, 1400);
+      };
+      try {
+        navigator.clipboard.writeText(text).then(done, function () { select(btn, text); });
+      } catch (e) {
+        select(btn, text);
+      }
+    });
+  });
+
+  function select(btn, text) {
+    var holder = btn.closest(".code") || btn.parentElement;
+    var target = holder && (holder.querySelector("pre") || holder.querySelector(".v"));
+    if (!target) return;
+    var range = document.createRange();
+    range.selectNodeContents(target);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    btn.textContent = "Select and copy";
+    setTimeout(function () { btn.textContent = "Copy"; }, 2200);
+  }
+</script>
+</body>
+</html>
